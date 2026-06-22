@@ -1,15 +1,27 @@
 import requests
-import pandas as pd 
+import pandas as pd
+import os
 
-scheme_code ="125497"
+schemes = {
+    "HDFC": 125497,
+    "SBI": 119551,
+    "ICICI": 120503,
+    "NIPPON": 118632,
+    "AXIS": 119092,
+    "KOTAK": 120841
+}
 
-url=f"https://api.mfapi.in/mf/{scheme_code}"
+os.makedirs("data/raw", exist_ok=True)
 
-response =requests.get(url)
-data= response.json()
+for name, code in schemes.items():
+    url = f"https://api.mfapi.in/mf/{code}"
 
-nav_df = pd.DataFrame(dat["data"])
+    response = requests.get(url)
+    data = response.json()
 
-nav_df.to_csv("data/raw/hdfc_top100_live_nav.csv",index=False)
+    nav_df = pd.DataFrame(data["data"])
 
-print("NAV saved successfully")
+    filename = f"data/raw/{name}.csv"
+    nav_df.to_csv(filename, index=False)
+
+    print(f"{name} saved successfully!")
