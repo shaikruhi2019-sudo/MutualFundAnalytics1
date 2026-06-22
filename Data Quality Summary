@@ -1,9 +1,13 @@
 Data Quality Summary
 
-The initial data ingestion process was completed successfully by fetching live Net Asset Value (NAV) data for six mutual fund schemes using the MFAPI API. The datasets were saved in CSV format under the `data/raw` directory without any download errors.
-
-A preliminary inspection of the datasets showed that each file follows a consistent structure with `date` and `nav` columns. The data appears to be well-formatted, and no duplicate records or corrupted entries were observed during the initial review. The NAV values are numeric, while the dates are stored in a consistent format suitable for further processing.
-
-However, the complete data quality validation could not be performed because the required project datasets (`fund_master.csv`, `nav_history.csv`, and other provided CSV files) were not available. As a result, tasks such as validating AMFI scheme codes, checking relationships between `fund_master` and `nav_history`, identifying missing values across all datasets, and exploring fund categories and risk grades remain pending until the complete datasets are provided.
-
-Overall, the available live NAV data is clean, consistent, and ready for further analysis.
+1. Successfully fetched historical NAV data for six mutual fund schemes using the MFAPI API.
+2. The downloaded datasets were saved as CSV files in the data/raw directory.
+3. Each dataset contains two primary fields:
+   - date
+   - nav
+4. No missing values were observed in the downloaded NAV datasets during initial inspection.
+5. The date values are stored in DD-MM-YYYY format and may require conversion to datetime format during preprocessing.
+6. The NAV values are stored as strings and should be converted to numeric (float) for analysis.
+7. Column names are consistent across all downloaded datasets, making them suitable for combined analysis.
+8. Validation of AMFI scheme codes against fund_master and nav_history datasets could not be performed because those datasets were not provided.
+9. Further data quality checks, including duplicate detection, referential integrity, and category validation, will be performed once the complete project datasets are available.
