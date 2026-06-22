@@ -1,0 +1,9 @@
+Missing NAV values
+
+Duplicate scheme codes
+
+Null expense ratio
+
+Wrong datatype
+
+Unexpected columns
